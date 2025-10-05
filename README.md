@@ -38,8 +38,8 @@ Returns studies that mention **`term_a`** but **not** `term_b`.
 **Examples**
 
 ```
-/dissociate/terms/posterior_cingulate/ventromedial_prefrontal
-/dissociate/terms/ventromedial_prefrontal/posterior_cingulate
+/dissociate/terms/posterior cingulate/ventromedial prefrontal
+/dissociate/terms/ventromedial prefrontal/posterior cingulate
 ```
 
 ---
@@ -117,8 +117,8 @@ After deployment, check the basic endpoints:
 **By terms**
 
 ```bash
-curl https://<your-app>.onrender.com/dissociate/terms/posterior_cingulate/ventromedial_prefrontal
-curl https://<your-app>.onrender.com/dissociate/terms/ventromedial_prefrontal/posterior_cingulate
+curl https://<your-app>.onrender.com/dissociate/terms/posterior cingulate/ventromedial prefrontal
+curl https://<your-app>.onrender.com/dissociate/terms/ventromedial prefrontal/posterior cingulate
 ```
 
 **By coordinates**
@@ -145,7 +145,7 @@ curl https://<your-app>.onrender.com/dissociate/locations/-2_50_-6/0_-52_26
 ## Notes
 
 - Path parameters use underscores (`_`) between coordinates: `x_y_z`.
-- Term strings should be URL-safe (e.g., `posterior_cingulate`, `ventromedial_prefrontal`). Replace spaces with underscores on the client if needed.
+- Term strings should be URL-safe (e.g., `posterior cingulate`, `ventromedial prefrontal`). Replace spaces with underscores on the client if needed.
 - The term/coordinate pairs above illustrate a **Default Mode Network** dissociation example. Adjust for your analysis.
 
 ---
