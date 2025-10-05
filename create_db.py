@@ -134,13 +134,16 @@ def build_metadata(engine: Engine, df: pd.DataFrame, schema: str, if_exists: str
     df = df.copy()
     df.columns = [str(c).strip().lower().replace(" ", "_") for c in df.columns]
 
+    # Ensure 'year' column is stored as integer (not float)
+    if "year" in df.columns:
+        df["year"] = pd.to_numeric(df["year"], errors="coerce").astype("Int64")
     with engine.begin() as conn:
         if if_exists == "replace":
             conn.execute(text(f"DROP TABLE IF EXISTS {schema}.metadata CASCADE;"))
         cols = []
         for c in df.columns:
             if pd.api.types.is_numeric_dtype(df[c]):
-                cols.append(f"{c} DOUBLE PRECISION")
+                cols.append(f"{c} INTEGER" if c == "year" else f"{c} DOUBLE PRECISION")
             else:
                 cols.append(f"{c} TEXT")
         cols.append("fts tsvector")
